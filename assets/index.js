@@ -11,6 +11,11 @@
     function init_additional_insured(select_element) {
         if (select_element.options[select_element.options.selectedIndex].value === 'grupno') {
             additional_insured_wrapper.style.display = 'block';
+
+            const elements = document.querySelectorAll('.additional_insured');
+            if (elements.length < 1) {
+                document.getElementById('add_additional_insured').click();
+            }
         } else {
             additional_insured_wrapper.style.display = 'none';
         }
