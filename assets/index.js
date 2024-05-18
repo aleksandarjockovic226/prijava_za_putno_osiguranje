@@ -9,13 +9,13 @@
     additional_insured_wrapper.addEventListener('click', (event) => { return remove_additional_insured(event) });
 
     function init_additional_insured(select_element) {
-        if (select_element.options[select_element.options.selectedIndex].value === 'grupno') {
-            additional_insured_wrapper.style.display = 'block';
-
-            const elements = document.querySelectorAll('.additional_insured');
-            if (elements.length < 1) {
+        if (select_element.options[select_element.options.selectedIndex].value === 'grupno') {            
+            const additional_insured_rows = document.querySelectorAll('.additional_insured');
+            if (additional_insured_rows.length < 1) {
                 document.getElementById('add_additional_insured').click();
             }
+
+            additional_insured_wrapper.style.display = 'block';
         } else {
             additional_insured_wrapper.style.display = 'none';
         }
@@ -56,8 +56,8 @@
 
         element_for_removal.remove();
 
-        const elements = document.querySelectorAll('.additional_insured');
-        if (elements.length < 1) {
+        const additional_insured_rows = document.querySelectorAll('.additional_insured');
+        if (additional_insured_rows.length < 1) {
             document.getElementById('add_additional_insured').click();
         }
     }

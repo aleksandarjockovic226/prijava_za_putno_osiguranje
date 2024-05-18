@@ -58,13 +58,46 @@
                 <div id="additional_insured_wrapper" style="display: none;">
                     <div class="d-flex justify-content-between">
                         <h4 class="mt-3">Dodatna lica na polisi</h4>
-                        <button type="button" id="add_additional_insured" class="btn btn-outline-success btn-sm self-right my-3">Dodavanje dodatnih
+                        <button type="button" id="add_additional_insured"
+                            class="btn btn-outline-success btn-sm self-right my-3">Dodavanje dodatnih
                             osiguranika</button>
                     </div>
 
 
                     <div id="additional_insured_list">
+                        <div class="additional_insured p-2" data-index="0">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <div class="form-group mt-3 d-grid">
+                                        <button type="button" id="remove_additional_insured"
+                                            data-target_index="0" class="btn btn-danger mt-4">Ukloni</button>
+                                    </div>
+                                </div>
 
+                                <div class="col-sm-10 col-lg-4">
+                                    <div class="form-group mt-3">
+                                        <div>
+                                            <label for="full_name_0">Ime i Prezime</label>
+                                            <input type="text" class="form-control" id="full_name_0">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 col-lg-3">
+                                    <div class="form-group mt-3">
+                                        <label for="date_of_birth_0">Datum rođenja</label>
+                                        <input type="date" class="form-control" id="date_of_birth_0">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 col-lg-3">
+                                    <div class="form-group mt-3">
+                                        <label for="passport_number_0">Broj pasoša</label>
+                                        <input type="text" class="form-control" id="passport_number_0">
+                                    </div>
+                                </div row>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
