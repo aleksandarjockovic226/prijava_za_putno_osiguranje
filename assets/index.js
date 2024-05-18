@@ -1,12 +1,20 @@
 (function () {
+    const type_of_insurance_policy_select = document.getElementById('type_of_insurance_policy');
     const additional_insured_wrapper = document.getElementById('additional_insured_wrapper');
 
-    if (additional_insured_wrapper == null) {
-        return false;
-    }
+    init_additional_insured(type_of_insurance_policy_select);
 
+    type_of_insurance_policy_select.addEventListener('change', () => { init_additional_insured(type_of_insurance_policy_select) });
     additional_insured_wrapper.addEventListener('click', (event) => { return add_additional_insured(event) });
     additional_insured_wrapper.addEventListener('click', (event) => { return remove_additional_insured(event) });
+
+    function init_additional_insured(select_element) {
+        if (select_element.options[select_element.options.selectedIndex].value === 'grupno') {
+            additional_insured_wrapper.style.display = 'block';
+        } else {
+            additional_insured_wrapper.style.display = 'none';
+        }
+    }
 
     function add_additional_insured(event) {
         if (event.target.getAttribute('id') !== 'add_additional_insured') {

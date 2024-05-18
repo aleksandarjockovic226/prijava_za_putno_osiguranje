@@ -47,15 +47,15 @@
                 </div>
 
                 <div class="form-group mt-3">
-                    <label for="type_of_insurance policy">Vrsta polise osiguranja</label>
-                    <select class="form-control" id="type_of_insurance policy">
-                        <option value"">Odaberite</option>
-                        <option value"individualno">Individualno</option>
-                        <option value"grupno">Grupno</option>
+                    <label for="type_of_insurance_policy">Vrsta polise osiguranja</label>
+                    <select class="form-control" id="type_of_insurance_policy">
+                        <option value="">Odaberite</option>
+                        <option value="individualno">Individualno</option>
+                        <option value="grupno">Grupno</option>
                     </select>
                 </div>
 
-                <div id="additional_insured_wrapper">
+                <div id="additional_insured_wrapper" style="display: none;">
                     <div class="d-flex justify-content-between">
                         <h4 class="mt-3">Dodatna lica na polisi</h4>
                         <button type="button" id="add_additional_insured" class="btn btn-outline-success btn-sm self-right my-3">Dodavanje dodatnih
