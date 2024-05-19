@@ -46,7 +46,7 @@ function insert_additional_insured(array $data): array
     foreach ($data as $insured) {
         $stmt->execute([
             'full_name' => $insured['full_name'],
-            'date_of_birth' => format_date_js_to_mysql($insured['date_of_birth']),
+            'date_of_birth' => $insured['date_of_birth'],
             'passport_number' => $insured['passport_number']
         ]);
         $insertedIds[] = $pdo->lastInsertId();
