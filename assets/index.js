@@ -129,12 +129,54 @@
 
     function validate_required_fields(required_fields) {
         required_fields.forEach(element => {
+            ;
+            let error_message = ''
+
             if (element.value == "") {
                 element.classList.add("is-invalid");
+                error_message = 'Ovo polje je obavezno.';
             } else {
                 element.classList.remove("is-invalid");
             }
+
+            const error_message_holder = get_sibling(element, '.error_message');
+            error_message_holder.innerText = error_message;
         });
+    }
+
+    function validate_email_field(email_field) {
+        const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
+        let error_message = ''
+
+        if (email_field.value == "") {
+            email_field.classList.add("is-invalid");
+            error_message = 'Ovo polje je obavezno.';
+        } else if (!email_field.value.match(regex)) {
+            email_field.classList.add("is-invalid");
+            error_message = 'Unesite validan email.';
+        } else {
+            email_field.classList.remove("is-invalid");
+        }
+
+        const error_message_holder = get_sibling(email_field, '.error_message');
+        error_message_holder.innerText = error_message;
+    }
+
+
+    function get_sibling(element, sibling_selector) {
+        var parent = element.parentNode;
+        var siblings = parent.children;
+
+        for (var i = 0; i < siblings.length; i++) {
+            if (siblings[i] === element) continue;
+
+            if (siblings[i].matches(sibling_selector)) {
+                return siblings[i];
+            }
+        }
+
+        return null;
     }
 
     function submit_form() {
@@ -150,6 +192,7 @@
         ];
 
         validate_required_fields(required_fields);
+        validate_email_field(email_input);
 
         data.full_name = full_name_input.value;
         data.date_of_birth = date_of_birth_input.value;
@@ -186,6 +229,7 @@
                 <div>
                     <label for="full_name_${index}">Ime i Prezime</label>
                     <input type="text" class="form-control" id="full_name_${index}">
+                    <p class="error_message"></p>
                 </div>
             </div>
         </div>
@@ -194,6 +238,7 @@
             <div class="form-group mt-3">
                 <label for="date_of_birth_${index}">Datum rođenja</label>
                 <input type="date" class="form-control" id="date_of_birth_${index}">
+                <p class="error_message"></p>
             </div>
         </div>
 
@@ -201,6 +246,7 @@
             <div class="form-group mt-3">
                 <label for="passport_number_${index}">Broj pasoša</label>
                 <input type="text" class="form-control" id="passport_number_${index}">
+                <p class="error_message"></p>
             </div>
         </div row>
     </div>

@@ -8,26 +8,31 @@
                     <div class="form-group mt-3">
                         <label for="full_name">Ime i Prezime*</label>
                         <input type="text" class="form-control" id="full_name">
+                        <p class="error_message"></p>
                     </div>
 
                     <div class="form-group mt-3">
                         <label for="date_of_birth">Datum rođenja*</label>
                         <input type="date" class="form-control" id="date_of_birth">
+                        <p class="error_message"></p>
                     </div>
 
                     <div class="form-group mt-3">
                         <label for="passport_number">Broj pasoša*</label>
                         <input type="text" class="form-control" id="passport_number">
+                        <p class="error_message"></p>
                     </div>
 
                     <div class="form-group mt-3">
                         <label for="phone">Telefon</label>
                         <input type="tel" class="form-control" id="phone">
+                        <p class="error_message"></p>
                     </div>
 
                     <div class="form-group mt-3">
                         <label for="email">Email*</label>
                         <input type="email" class="form-control" id="email">
+                        <p class="error_message"></p>
                     </div>
                 </div>
 
@@ -36,12 +41,14 @@
                         <div class="form-group mt-3">
                             <label for="date_of_travel_from">Datum putovanja Od*</label>
                             <input type="date" class="form-control" id="date_of_travel_from">
+                            <p class="error_message"></p>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group mt-3">
                             <label for="date_of_travel_to">Datum putovanja Do*</label>
                             <input type="date" class="form-control" id="date_of_travel_to">
+                            <p class="error_message"></p>
                         </div>
                     </div>
                     <div class="col-12">
@@ -71,8 +78,8 @@
                             <div class="row">
                                 <div class="col-sm-2">
                                     <div class="form-group mt-3 d-grid">
-                                        <button type="button" id="remove_additional_insured"
-                                            data-target_index="0" class="btn btn-danger mt-4">Ukloni</button>
+                                        <button type="button" id="remove_additional_insured" data-target_index="0"
+                                            class="btn btn-danger mt-4">Ukloni</button>
                                     </div>
                                 </div>
 
@@ -81,6 +88,7 @@
                                         <div>
                                             <label for="full_name_0">Ime i Prezime</label>
                                             <input type="text" class="form-control" id="full_name_0">
+                                            <p class="error_message"></p>
                                         </div>
                                     </div>
                                 </div>
@@ -89,6 +97,7 @@
                                     <div class="form-group mt-3">
                                         <label for="date_of_birth_0">Datum rođenja</label>
                                         <input type="date" class="form-control" id="date_of_birth_0">
+                                        <p class="error_message"></p>
                                     </div>
                                 </div>
 
@@ -96,6 +105,7 @@
                                     <div class="form-group mt-3">
                                         <label for="passport_number_0">Broj pasoša</label>
                                         <input type="text" class="form-control" id="passport_number_0">
+                                        <p class="error_message"></p>
                                     </div>
                                 </div row>
                             </div>
