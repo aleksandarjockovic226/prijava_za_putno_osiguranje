@@ -9,7 +9,7 @@ function format_display_date(string $date): string
     return $dateTime->format('d.m.Y.');
 }
 
-function get_insura_insurance_carrier_data(array $post_data): array
+function get_insurance_carrier_data(array $post_data): array
 {
     $data = [];
     $data["full_name"] = $post_data["full_name"];

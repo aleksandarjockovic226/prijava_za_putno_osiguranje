@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     require ("./utilities/helpers.php");
     require_once ("./utilities/insert_functions.php");
 
-    $insurance_carrier_data = get_insura_insurance_carrier_data($post_data);
+    $insurance_carrier_data = get_insurance_carrier_data($post_data);
     $carrier_id = insert_insurance_carrier($insurance_carrier_data);
 
     if ($post_data['type_of_insurance_policy'] == 'grupno') {
