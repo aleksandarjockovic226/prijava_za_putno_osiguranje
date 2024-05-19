@@ -9,6 +9,15 @@ function format_date_js_to_mysql(string $date): string
     return $dateTime->format('Y-m-d');
 }
 
+function format_display_date(string $date): string
+{
+    $dateTime = DateTime::createFromFormat('Y-m-d', $date);
+    if ($dateTime === false) {
+        throw new Exception("Invalid date format: $date");
+    }
+    return $dateTime->format('d.m.Y.');
+}
+
 function get_insura_insurance_carrier_data(array $post_data): array
 {
     $data = [];

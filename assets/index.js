@@ -1,4 +1,9 @@
 (function () {
+    const insurance_policy_table = document.getElementById('insurance_policy_table');
+    if (insurance_policy_table) {
+        insurance_policy_table.addEventListener('click', (event) => { show_hide_additional_insured(event) });
+    }
+
     const full_name_input = document.getElementById('full_name');
     const date_of_birth_input = document.getElementById('date_of_birth');
     const passport_number_input = document.getElementById('passport_number');
@@ -6,28 +11,43 @@
     const email_input = document.getElementById('email');
 
     const submit_form_button = document.getElementById('submit_form');
-
-    submit_form_button.addEventListener('click', () => { submit_form() });
+    if (submit_form_button) {
+        submit_form_button.addEventListener('click', () => { submit_form() });
+    }
 
     const date_of_travel_from_input = document.getElementById('date_of_travel_from');
     const date_of_travel_to_input = document.getElementById('date_of_travel_to');
+    if (date_of_travel_from_input && date_of_travel_to_input) {
+        init_show_number_of_days();
 
-    init_show_number_of_days();
-
-    [date_of_travel_from_input, date_of_travel_to_input].forEach((element) => {
-        element.addEventListener('change', () => { init_show_number_of_days() });
-    });
-    date_of_travel_from_input.addEventListener('change', () => { date_of_travel_to_input.min = date_of_travel_from_input.value; });
-    date_of_travel_to_input.addEventListener('change', () => { date_of_travel_from_input.max = date_of_travel_to_input.value; });
+        [date_of_travel_from_input, date_of_travel_to_input].forEach((element) => {
+            element.addEventListener('change', () => { init_show_number_of_days() });
+        });
+        date_of_travel_from_input.addEventListener('change', () => { date_of_travel_to_input.min = date_of_travel_from_input.value; });
+        date_of_travel_to_input.addEventListener('change', () => { date_of_travel_from_input.max = date_of_travel_to_input.value; });
+    }
 
     const type_of_insurance_policy_select = document.getElementById('type_of_insurance_policy');
     const additional_insured_wrapper = document.getElementById('additional_insured_wrapper');
+    if (type_of_insurance_policy_select && additional_insured_wrapper) {
+        init_additional_insured(type_of_insurance_policy_select);
 
-    init_additional_insured(type_of_insurance_policy_select);
+        type_of_insurance_policy_select.addEventListener('change', () => { init_additional_insured(type_of_insurance_policy_select) });
+        additional_insured_wrapper.addEventListener('click', (event) => { add_additional_insured(event) });
+        additional_insured_wrapper.addEventListener('click', (event) => { remove_additional_insured(event) });
+    }
 
-    type_of_insurance_policy_select.addEventListener('change', () => { init_additional_insured(type_of_insurance_policy_select) });
-    additional_insured_wrapper.addEventListener('click', (event) => { add_additional_insured(event) });
-    additional_insured_wrapper.addEventListener('click', (event) => { remove_additional_insured(event) });
+    function show_hide_additional_insured(event) {
+        if (!event.target.hasAttribute('data-key')) {
+            return false;
+        }
+
+        const button = event.target;
+        const key = button.getAttribute('data-key');
+        const table = document.getElementById(`additional_insured_table_${key}`);
+
+        table.style.display = table.style.display === 'none' ? 'table-row' : 'none';
+    }
 
     function init_additional_insured(select_element) {
         if (select_element.options[select_element.options.selectedIndex].value === 'grupno') {
