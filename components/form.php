@@ -32,17 +32,20 @@
                 </div>
 
                 <div class="row">
-                    <div class="col">
+                    <div class="col-6">
                         <div class="form-group mt-3">
                             <label for="date_of_travel_from">Datum putovanja Od*</label>
                             <input type="date" class="form-control" id="date_of_travel_from">
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-6">
                         <div class="form-group mt-3">
                             <label for="date_of_travel_to">Datum putovanja Do*</label>
                             <input type="date" class="form-control" id="date_of_travel_to">
                         </div>
+                    </div>
+                    <div class="col-12">
+                        <p class="numebr_of_days"></p>
                     </div>
                 </div>
 

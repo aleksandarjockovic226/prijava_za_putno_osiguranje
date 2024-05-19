@@ -1,15 +1,26 @@
 (function () {
+    const date_of_travel_from_input = document.getElementById('date_of_travel_from');
+    const date_of_travel_to_input = document.getElementById('date_of_travel_to');
+
+    init_show_number_of_days();
+
+    [date_of_travel_from_input, date_of_travel_to_input].forEach((element) => {
+        element.addEventListener('change', () => { init_show_number_of_days() });
+    });
+    date_of_travel_from_input.addEventListener('change', () => { date_of_travel_to_input.min = date_of_travel_from_input.value; });
+    date_of_travel_to_input.addEventListener('change', () => { date_of_travel_from_input.max = date_of_travel_to_input.value; });
+
     const type_of_insurance_policy_select = document.getElementById('type_of_insurance_policy');
     const additional_insured_wrapper = document.getElementById('additional_insured_wrapper');
 
     init_additional_insured(type_of_insurance_policy_select);
 
     type_of_insurance_policy_select.addEventListener('change', () => { init_additional_insured(type_of_insurance_policy_select) });
-    additional_insured_wrapper.addEventListener('click', (event) => { return add_additional_insured(event) });
-    additional_insured_wrapper.addEventListener('click', (event) => { return remove_additional_insured(event) });
+    additional_insured_wrapper.addEventListener('click', (event) => { add_additional_insured(event) });
+    additional_insured_wrapper.addEventListener('click', (event) => { remove_additional_insured(event) });
 
     function init_additional_insured(select_element) {
-        if (select_element.options[select_element.options.selectedIndex].value === 'grupno') {            
+        if (select_element.options[select_element.options.selectedIndex].value === 'grupno') {
             const additional_insured_rows = document.querySelectorAll('.additional_insured');
             if (additional_insured_rows.length < 1) {
                 document.getElementById('add_additional_insured').click();
@@ -60,6 +71,23 @@
         if (additional_insured_rows.length < 1) {
             document.getElementById('add_additional_insured').click();
         }
+    }
+
+    function init_show_number_of_days() {
+        const number_of_days = calculate_number_of_days(date_of_travel_from_input.value, date_of_travel_to_input.value);
+        const text = number_of_days > 0 ? `Broj dana: ${number_of_days}.` : '';
+
+        document.querySelector('.numebr_of_days').innerText = text;
+    }
+
+    function calculate_number_of_days(date_from, date_to) {
+        let from = new Date(date_from);
+        let to = new Date(date_to);
+
+        let difference_in_time = to.getTime() - from.getTime();
+        let difference_in_days = Math.round(difference_in_time / (1000 * 3600 * 24));
+
+        return difference_in_days + 1;
     }
 
     const additional_insured_template = (index) => {
