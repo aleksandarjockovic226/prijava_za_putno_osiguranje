@@ -98,13 +98,7 @@
 
             const required_fields = [ai_full_name, ai_date_of_birth, ai_passport_number];
 
-            required_fields.forEach(element => {
-                if (element.value == "") {
-                    element.classList.add("is-invalid");
-                } else {
-                    element.classList.remove("is-invalid");
-                }
-            });
+            validate_required_fields(required_fields);
 
             ai_data.full_name = ai_full_name.value;
             ai_data.date_of_birth = ai_date_of_birth.value;
@@ -133,6 +127,16 @@
         return difference_in_days >= 0 ? difference_in_days + 1 : 0;
     }
 
+    function validate_required_fields(required_fields) {
+        required_fields.forEach(element => {
+            if (element.value == "") {
+                element.classList.add("is-invalid");
+            } else {
+                element.classList.remove("is-invalid");
+            }
+        });
+    }
+
     function submit_form() {
         let data = {};
 
@@ -145,13 +149,7 @@
             date_of_travel_to_input
         ];
 
-        required_fields.forEach(element => {
-            if (element.value == "") {
-                element.classList.add("is-invalid");
-            } else {
-                element.classList.remove("is-invalid");
-            }
-        });
+        validate_required_fields(required_fields);
 
         data.full_name = full_name_input.value;
         data.date_of_birth = date_of_birth_input.value;
