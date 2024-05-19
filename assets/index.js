@@ -100,9 +100,9 @@
 
             validate_required_fields(required_fields);
 
-            ai_data.full_name = ai_full_name.value;
-            ai_data.date_of_birth = ai_date_of_birth.value;
-            ai_data.passport_number = ai_passport_number.value;
+            ai_data.full_name = ai_full_name.value.trim();
+            ai_data.date_of_birth = ai_date_of_birth.value.trim();
+            ai_data.passport_number = ai_passport_number.value.trim();
 
             data.push(ai_data);
         });
@@ -129,10 +129,11 @@
 
     function validate_required_fields(required_fields) {
         required_fields.forEach(element => {
-            ;
             let error_message = ''
 
-            if (element.value == "") {
+            const value = element.value.trim();
+
+            if (value == "") {
                 element.classList.add("is-invalid");
                 error_message = 'Ovo polje je obavezno.';
             } else {
@@ -149,10 +150,12 @@
 
         let error_message = ''
 
-        if (email_field.value == "") {
+        const value = email_field.value.trim();
+
+        if (value == "") {
             email_field.classList.add("is-invalid");
             error_message = 'Ovo polje je obavezno.';
-        } else if (!email_field.value.match(regex)) {
+        } else if (!value.match(regex)) {
             email_field.classList.add("is-invalid");
             error_message = 'Unesite validan email.';
         } else {
@@ -162,7 +165,6 @@
         const error_message_holder = get_sibling(email_field, '.error_message');
         error_message_holder.innerText = error_message;
     }
-
 
     function get_sibling(element, sibling_selector) {
         var parent = element.parentNode;
@@ -194,15 +196,15 @@
         validate_required_fields(required_fields);
         validate_email_field(email_input);
 
-        data.full_name = full_name_input.value;
-        data.date_of_birth = date_of_birth_input.value;
-        data.passport_number = passport_number_input.value;
-        data.phone = phone_input.value;
-        data.email = email_input.value;
-        data.date_of_travel_from = date_of_travel_from_input.value;
-        data.date_of_travel_to = date_of_travel_to_input.value;
+        data.full_name = full_name_input.value.trim();
+        data.date_of_birth = date_of_birth_input.value.trim();
+        data.passport_number = passport_number_input.value.trim();
+        data.phone = phone_input.value.trim();
+        data.email = email_input.value.trim();
+        data.date_of_travel_from = date_of_travel_from_input.value.trim();
+        data.date_of_travel_to = date_of_travel_to_input.value.trim();
         data.number_of_days = calculate_number_of_days(data.date_of_travel_from, data.date_of_travel_to);
-        data.type_of_insurance_policy = type_of_insurance_policy_select.options[type_of_insurance_policy_select.options.selectedIndex].value;
+        data.type_of_insurance_policy = type_of_insurance_policy_select.options[type_of_insurance_policy_select.options.selectedIndex].value.trim();
 
         if (data.type_of_insurance_policy === 'grupno') {
             data.additional_insured = get_additional_insuted_data();
@@ -252,4 +254,4 @@
     </div>
 </div>`
     };
-})()
+})();
