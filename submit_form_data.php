@@ -1,20 +1,12 @@
 <?php
-$dsn = 'mysql:host=' . getenv('MYSQL_HOST') . ';dbname=' . getenv('MYSQL_DATABASE');
-$username = getenv('MYSQL_USER');
-$password = getenv('MYSQL_PASSWORD');
+require ("./utilities/database.php");
 
-try {
-    $pdo = new PDO($dsn, $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-    die();
-}
+$pdo = connect_to_database();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $post_data = json_decode(file_get_contents("php://input"), true);
 
-    require_once ("./utilities/helpers.php");
+    require ("./utilities/helpers.php");
     require_once ("./utilities/insert_functions.php");
 
     $insurance_carrier_data = get_insura_insurance_carrier_data($post_data);
