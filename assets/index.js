@@ -1,4 +1,14 @@
 (function () {
+    const full_name_input = document.getElementById('full_name');
+    const date_of_birth_input = document.getElementById('date_of_birth');
+    const passport_number_input = document.getElementById('passport_number');
+    const phone_input = document.getElementById('phone');
+    const email_input = document.getElementById('email');
+
+    const submit_form_button = document.getElementById('submit_form');
+
+    submit_form_button.addEventListener('click', () => { submit_form() });
+
     const date_of_travel_from_input = document.getElementById('date_of_travel_from');
     const date_of_travel_to_input = document.getElementById('date_of_travel_to');
 
@@ -73,6 +83,39 @@
         }
     }
 
+    function get_additional_insuted_data() {
+        let data = [];
+
+        const additional_insured_rows = document.querySelectorAll('.additional_insured');
+        additional_insured_rows.forEach(element => {
+            let ai_data = {};
+
+            const index = parseInt(element.getAttribute('data-index'));
+
+            const ai_full_name = document.getElementById(`full_name_${index}`);
+            const ai_date_of_birth = document.getElementById(`date_of_birth_${index}`);
+            const ai_passport_number = document.getElementById(`passport_number_${index}`);
+
+            const required_fields = [ai_full_name, ai_date_of_birth, ai_passport_number];
+
+            required_fields.forEach(element => {
+                if (element.value == "") {
+                    element.classList.add("is-invalid");
+                } else {
+                    element.classList.remove("is-invalid");
+                }
+            });
+
+            ai_data.full_name = ai_full_name.value;
+            ai_data.date_of_birth = ai_date_of_birth.value;
+            ai_data.passport_number = ai_passport_number.value;
+
+            data.push(ai_data);
+        });
+
+        return data;
+    }
+
     function init_show_number_of_days() {
         const number_of_days = calculate_number_of_days(date_of_travel_from_input.value, date_of_travel_to_input.value);
         const text = number_of_days > 0 ? `Broj dana: ${number_of_days}.` : '';
@@ -87,7 +130,48 @@
         let difference_in_time = to.getTime() - from.getTime();
         let difference_in_days = Math.round(difference_in_time / (1000 * 3600 * 24));
 
-        return difference_in_days + 1;
+        return difference_in_days >= 0 ? difference_in_days + 1 : 0;
+    }
+
+    function submit_form() {
+        let data = {};
+
+        const required_fields = [
+            full_name_input,
+            date_of_birth_input,
+            passport_number_input,
+            email_input,
+            date_of_travel_from_input,
+            date_of_travel_to_input
+        ];
+
+        required_fields.forEach(element => {
+            if (element.value == "") {
+                element.classList.add("is-invalid");
+            } else {
+                element.classList.remove("is-invalid");
+            }
+        });
+
+        data.full_name = full_name_input.value;
+        data.date_of_birth = date_of_birth_input.value;
+        data.passport_number = passport_number_input.value;
+        data.phone = phone_input.value;
+        data.email = email_input.value;
+        data.date_of_travel_from = date_of_travel_from_input.value;
+        data.date_of_travel_to = date_of_travel_to_input.value;
+        data.number_of_days = calculate_number_of_days(data.date_of_travel_from, data.date_of_travel_to);
+        data.type_of_insurance_policy = type_of_insurance_policy_select.options[type_of_insurance_policy_select.options.selectedIndex].value;
+
+        if (data.type_of_insurance_policy === 'grupno') {
+            data.additional_insured = get_additional_insuted_data();
+        }
+
+        const invalid_fields = document.querySelectorAll('.is-invalid');
+
+        if (invalid_fields.length > 0) {
+            return false;
+        }
     }
 
     const additional_insured_template = (index) => {

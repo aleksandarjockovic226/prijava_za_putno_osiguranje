@@ -52,7 +52,6 @@
                 <div class="form-group mt-3">
                     <label for="type_of_insurance_policy">Vrsta polise osiguranja</label>
                     <select class="form-control" id="type_of_insurance_policy">
-                        <option value="">Odaberite</option>
                         <option value="individualno">Individualno</option>
                         <option value="grupno">Grupno</option>
                     </select>
@@ -104,7 +103,7 @@
                     </div>
                 </div>
 
-                <button type="button" class="btn btn-primary mt-5">Prosledi</button>
+                <button type="button" id="submit_form" class="btn btn-primary mt-5">Prosledi</button>
             </form>
         </div>
     </div>
