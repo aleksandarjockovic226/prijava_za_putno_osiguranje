@@ -240,7 +240,9 @@
             if (err) {
                 console.error("Error:", err);
             } else {
-                console.log("Response:", response);
+                if (response == "success") {
+                    alert("Podaci uneti u bazu!");
+                }
             }
         });
     }
