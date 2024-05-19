@@ -43,6 +43,6 @@ docker-compose down
 Ako ste započeli projekat koristeći docker-compose, i niste modifikovali datoteku docker-compose.yaml, možete posetiti:
 
 - Projekat: http://localhost:8000
-- phpMiAdmin: http://localhost:8080
+- phpMyAdmin: http://localhost:8080
 
-  _Username i Password za phpMiAdmin nalaze se u .env datoteci kao vrednost promenljivih "MYSQL_USER" i "MYSQL_PASSWORD"_
+  _Username i Password za phpMyAdmin nalaze se u .env datoteci kao vrednost promenljivih "MYSQL_USER" i "MYSQL_PASSWORD"_
