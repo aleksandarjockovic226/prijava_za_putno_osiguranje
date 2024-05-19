@@ -181,6 +181,22 @@
         return null;
     }
 
+    function send_request(url, method, data, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.open(method, url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    callback(null, xhr.responseText);
+                } else {
+                    callback(new Error("Request failed with status: " + xhr.status));
+                }
+            }
+        };
+        xhr.send(JSON.stringify(data));
+    }
+
     function submit_form() {
         let data = {};
 
@@ -215,6 +231,18 @@
         if (invalid_fields.length > 0) {
             return false;
         }
+
+        const form_element = document.getElementById('form');
+        const form_action = form_element.getAttribute('action');
+        const form_method = form_element.getAttribute('method');
+
+        send_request(form_action, form_method, data, function (err, response) {
+            if (err) {
+                console.error("Error:", err);
+            } else {
+                console.log("Response:", response);
+            }
+        });
     }
 
     const additional_insured_template = (index) => {

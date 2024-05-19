@@ -1,7 +1,7 @@
 <section class="container mt-5">
     <div class="row">
         <div class="col-sm-12 col-lg-8">
-            <form>
+            <form action="./submit_form_data.php" method="POST" id="form"></form>
                 <div class="insurance_carrier">
                     <h1>Nosilac osiguranja</h1>
 
