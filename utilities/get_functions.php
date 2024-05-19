@@ -54,6 +54,7 @@ function get_additional_insured_data_by_policy_id($policy_id): array
 function process_base_insurance_data(array $data): array
 {
     foreach ($data as &$item) {
+        $item["insertion_date"] = format_display_date($item["insertion_date"]);
         $item["carrier_date_of_birth"] = format_display_date($item["carrier_date_of_birth"]);
         $item["date_of_travel_from"] = format_display_date($item["date_of_travel_from"]);
         $item["date_of_travel_to"] = format_display_date($item["date_of_travel_to"]);
