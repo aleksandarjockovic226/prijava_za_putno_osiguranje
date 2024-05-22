@@ -78,10 +78,12 @@
         });
 
         const newIndex = maxIndex + 1;
-        const new_element = additional_insured_template(newIndex);
-        const additional_insured_list = document.getElementById('additional_insured_list');
+        let new_element = document.createElement('div');
+        new_element.innerHTML = additional_insured_template(newIndex);
+        new_element = new_element.firstChild;
 
-        additional_insured_list.innerHTML += new_element;
+        const additional_insured_list = document.getElementById('additional_insured_list');
+        additional_insured_list.appendChild(new_element);
     }
 
     function remove_additional_insured(event) {
